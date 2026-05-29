@@ -1,7 +1,20 @@
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Card, Col, Input, InputNumber, Row, Select } from 'antd';
 
-export default function MovieFilters({ genres, genresLoading }) {
-    const genreOptions = genres?.map((genre) => ({
+import {
+    setSearch,
+    setGenre,
+    setYear,
+    setRating,
+    resetFilters,
+} from '../../../store/slices/moviesSlice.js'
+
+export default function MovieFilters({ genres = [], genresLoading = false }) {
+    const dispatch = useDispatch();
+
+    const { filters } = useSelector(state => state.movies);
+
+    const genreOptions = genres.map((genre) => ({
         label: genre.label,
         value: genre.value
     }));
@@ -12,9 +25,9 @@ export default function MovieFilters({ genres, genresLoading }) {
                 <Col xs={24} md={6}>
                     <Input
                         placeholder="Search by title"
-                        value={''}
+                        value={filters.search}
                         onChange={(event) => {
-                           console.log(event);
+                            dispatch(setSearch(event.target.value));
                         }}
                         allowClear
                     />
@@ -23,11 +36,11 @@ export default function MovieFilters({ genres, genresLoading }) {
                 <Col xs={24} md={6}>
                     <Select
                         placeholder="Genre"
-                        value={""}
+                        value={filters.genre || undefined}
                         options={genreOptions}
                         loading={genresLoading}
                         onChange={(value) => {
-                            console.log(value);
+                            dispatch(setGenre(value));
                         }}
                         allowClear
                         style={{ width: '100%' }}
@@ -37,11 +50,11 @@ export default function MovieFilters({ genres, genresLoading }) {
                 <Col xs={24} md={4}>
                     <InputNumber
                         placeholder="Year"
-                        value={""}
+                        value={filters.year || undefined}
                         min={1900}
                         max={2100}
                         onChange={(value) => {
-                            console.log(value);
+                            dispatch(setYear(value || ''));
                         }}
                         style={{ width: '100%' }}
                     />
@@ -50,12 +63,12 @@ export default function MovieFilters({ genres, genresLoading }) {
                 <Col xs={24} md={4}>
                     <InputNumber
                         placeholder="Min rating"
-                        value={""}
+                        value={filters.rating || undefined}
                         min={0}
                         max={10}
                         step={0.1}
                         onChange={(value) => {
-                            console.log(value);
+                            dispatch(setRating(value || ''));
                         }}
                         style={{ width: '100%' }}
                     />
@@ -65,7 +78,7 @@ export default function MovieFilters({ genres, genresLoading }) {
                     <Button
                         type="default"
                         onClick={() => {
-                            console.log("");
+                            dispatch(resetFilters());
                         }}
                         block
                     >
