@@ -1,16 +1,30 @@
-import { getMovies} from '../../api/moviesApi.js';
-import { useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { Button, Card, Space, Typography } from 'antd';
+
+const { Title, Paragraph } = Typography;
 
 export default function Home() {
-    useEffect(() => {
-        getMovies();
-    }, []);
-
     return (
-        <div style={{ fontFamily: 'Roboto Black', fontWeight: 'bold' }}>
-            Home
+        <Card>
+            <Space orientation="vertical" size="middle">
+                <Title>Movie Finder</Title>
 
-            <span style={{ fontFamily: 'Roboto IHOR'}}>Ihor</span>
-        </div>
-    )
+                <Paragraph>
+                    Movie Finder is a React application for searching,
+                    filtering, sorting and viewing movie details.
+                </Paragraph>
+
+                <Paragraph>
+                    The project uses React, Redux Toolkit, redux-thunk,
+                    React Router, Axios, Ant Design and environment variables.
+                </Paragraph>
+
+                <Link to="/movies">
+                    <Button type="primary" size="large">
+                        Open movies
+                    </Button>
+                </Link>
+            </Space>
+        </Card>
+    );
 }

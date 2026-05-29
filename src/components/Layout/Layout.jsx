@@ -1,16 +1,45 @@
-import  { Outlet } from 'react-router-dom';
+import { Outlet, NavLink } from 'react-router-dom';
+import { Layout as AntLayout, Menu, Typography } from 'antd';
 
-import Header from '../Header/Header.jsx';
-import Footer from '../Footer/Footer.jsx';
+const { Header, Content, Footer } = AntLayout;
+const { Text } = Typography;
+
+const menuItems = [
+    {
+        key: '/',
+        label: <NavLink to="/">Home</NavLink>
+    },
+    {
+        key: '/movies',
+        label: <NavLink to="/movies">Movies</NavLink>
+    },
+    {
+        key: '/about',
+        label: <NavLink to="/about">About</NavLink>
+    }
+];
 
 export default function Layout() {
     return (
-        <>
-            <Header />
+        <AntLayout style={{ minHeight: '100vh' }}>
+            <Header>
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    items={menuItems}
+                    style={{ flex: 1, minWidth: 0 }}
+                />
+            </Header>
 
-            <Outlet />
+            <Content style={{ padding: '32px' }}>
+                <Outlet />
+            </Content>
 
-            <Footer />
-        </>
-    )
+            <Footer style={{ textAlign: 'center' }}>
+                <Text type="secondary">
+                    Movie Finder © 2026
+                </Text>
+            </Footer>
+        </AntLayout>
+    );
 }
