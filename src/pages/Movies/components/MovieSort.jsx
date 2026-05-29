@@ -31,7 +31,7 @@ export default function MovieSort() {
                         value={filters.sortBy || undefined}
                         options={sortByOptions}
                         onChange={(value) => {
-                            dispatch(setSortBy(value));
+                            dispatch(setSortBy(value || undefined));
                         }}
                         allowClear
                         style={{ width: '100%' }}
@@ -43,7 +43,7 @@ export default function MovieSort() {
                         value={filters.order}
                         options={orderOptions}
                         onChange={(value) => {
-                            dispatch(setOrder(value));
+                            dispatch(setOrder(value || undefined));
                         }}
                         style={{ width: '100%' }}
                     />
