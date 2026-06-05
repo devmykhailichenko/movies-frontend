@@ -5,41 +5,34 @@ const { Header, Content, Footer } = AntLayout;
 const { Text } = Typography;
 
 const menuItems = [
-    {
-        key: '/',
-        label: <NavLink to="/">Home</NavLink>
-    },
-    {
-        key: '/movies',
-        label: <NavLink to="/movies">Movies</NavLink>
-    },
-    {
-        key: '/about',
-        label: <NavLink to="/about">About</NavLink>
-    }
+  {
+    key: '/',
+    label: <NavLink to="/">Home</NavLink>,
+  },
+  {
+    key: '/movies',
+    label: <NavLink to="/movies">Movies</NavLink>,
+  },
+  {
+    key: '/about',
+    label: <NavLink to="/about">About</NavLink>,
+  },
 ];
 
 export default function Layout() {
-    return (
-        <AntLayout style={{ minHeight: '100vh' }}>
-            <Header>
-                <Menu
-                    theme="dark"
-                    mode="horizontal"
-                    items={menuItems}
-                    style={{ flex: 1, minWidth: 0 }}
-                />
-            </Header>
+  return (
+    <AntLayout style={{ minHeight: '100vh' }}>
+      <Header>
+        <Menu theme="dark" mode="horizontal" items={menuItems} style={{ flex: 1, minWidth: 0 }} />
+      </Header>
 
-            <Content style={{ padding: '32px' }}>
-                <Outlet />
-            </Content>
+      <Content style={{ padding: '32px' }}>
+        <Outlet />
+      </Content>
 
-            <Footer style={{ textAlign: 'center' }}>
-                <Text type="secondary">
-                    Movie Finder © 2026
-                </Text>
-            </Footer>
-        </AntLayout>
-    );
+      <Footer style={{ textAlign: 'center' }}>
+        <Text type="secondary">Movie Finder © 2026</Text>
+      </Footer>
+    </AntLayout>
+  );
 }
