@@ -18,7 +18,7 @@ const { Title, Paragraph } = Typography;
 export default function Movies() {
   const dispatch = useDispatch();
 
-  const { movies, loading, error, filters } = useSelector((state) => state.movies);
+  const { movies, loading, error, filters, filtersTouched } = useSelector((state) => state.movies);
   const { genres, loading: genresLoading } = useSelector((state) => state.genres);
 
   const debouncedSearch = useDebounce(filters.search, 500);
@@ -31,12 +31,10 @@ export default function Movies() {
   }, [debouncedSearch]);
 
   useEffect(() => {
-    dispatch(fetchMovies(requestFilters));
+    if(filtersTouched) {
+      dispatch(fetchMovies(requestFilters));
+    }
   }, [requestFilters, dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchGenres());
-  }, [dispatch]);
 
   return (
     <Space orientation="vertical" size="large" style={{ width: '100%' }}>
