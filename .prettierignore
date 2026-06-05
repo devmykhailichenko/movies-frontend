@@ -1,0 +1,10 @@
+node_module
+dist
+build
+coverage
+.idea
+.vite
+dist-ssr
+.vscode/*
+!.vscode/extensions.json
+.DS_Store

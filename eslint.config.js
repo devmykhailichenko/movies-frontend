@@ -48,5 +48,4 @@ export default [
   },
 ];
 
-
 //npm install --save-dev eslint @eslint/js globals eslint-plugin-react eslint-plugin-react-hooks eslint-plugin-react-refresh
