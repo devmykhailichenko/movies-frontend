@@ -8,15 +8,15 @@ import About from '../pages/About/About.jsx';
 import NotFound from '../pages/NotFound/NotFound.jsx';
 
 export default function AppRouter() {
-    return (
-        <Routes>
-            <Route path='/' element={<Layout />}>
-                <Route index element={<Home />} />
-                <Route path='/movies' element={<Movies />} />
-                <Route path='/movies/:id' element={<MoviesDetails />} />
-                <Route path='/about' element={<About />} />
-                <Route path='*' element={<NotFound />} />
-            </Route>
-        </Routes>
-    )
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:id" element={<MoviesDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 }

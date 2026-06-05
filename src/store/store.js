@@ -4,8 +4,8 @@ import moviesReducer from './slices/moviesSlice.js';
 import genresReducer from './slices/genresSlice.js';
 
 export const store = configureStore({
-    reducer: {
-        movies: moviesReducer,
-        genres: genresReducer,
-    }
+  reducer: {
+    movies: moviesReducer,
+    genres: genresReducer,
+  },
 });
