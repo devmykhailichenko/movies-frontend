@@ -8,7 +8,6 @@ const initialState = {
   loading: false,
   currentMovieLoading: false,
   error: null,
-  currentMovieError: null,
   filters: {
     search: '',
     genre: '',
@@ -17,6 +16,7 @@ const initialState = {
     sortBy: '',
     order: '',
   },
+  filtersTouched: false,
 };
 
 const moviesSlice = createSlice({
@@ -25,15 +25,19 @@ const moviesSlice = createSlice({
   reducers: {
     setSearch: (state, action) => {
       state.filters.search = action.payload;
+      state.filtersTouched = true;
     },
     setGenre: (state, action) => {
       state.filters.genre = action.payload;
+      state.filtersTouched = true;
     },
     setYear: (state, action) => {
       state.filters.year = action.payload;
+      state.filtersTouched = true;
     },
     setRating: (state, action) => {
       state.filters.rating = action.payload;
+      state.filtersTouched = true;
     },
     setSortBy: (state, action) => {
       state.filters.sortBy = action.payload;
@@ -65,15 +69,13 @@ const moviesSlice = createSlice({
       })
       .addCase(fetchMovieById.pending, (state) => {
         state.currentMovieLoading = true;
-        state.currentMovieError = null;
       })
       .addCase(fetchMovieById.fulfilled, (state, action) => {
         state.currentMovieLoading = false;
         state.currentMovie = action.payload;
       })
-      .addCase(fetchMovieById.rejected, (state, action) => {
+      .addCase(fetchMovieById.rejected, (state) => {
         state.currentMovieLoading = false;
-        state.currentMovieError = action.payload;
       });
   },
 });

@@ -17,7 +17,7 @@ export const fetchMovieById = createAsyncThunk(
   'movies/fetchMovieById',
   async (id, { rejectWithValue }) => {
     try {
-      return await getMovieById(id);
+      return await getMovieById();
     } catch (error) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch movie');
     }
